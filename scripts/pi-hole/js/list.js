@@ -120,6 +120,48 @@ function refresh(fade) {
             $("#alFailure").show();
         }
     });
+
+    // Custom List with Time based rules
+    var listt = $("#list-time");
+    if(fade) {
+        listt.fadeOut(100);
+    }
+    $.ajax({
+        url: "scripts/pi-hole/php/get.php",
+        method: "get",
+        data: {"list":""},
+        success: function(response) {
+            listt.html("");
+            var data = JSON.parse(response);
+
+            if(data.length === 0) {
+                $(".h3-time-blocking").hide();
+            }
+            else{
+                $(".h3-time-blocking").show();
+                data[0] = data[0].sort();
+                data[0].forEach(function (entry, index) {
+                    // Whitelist entry or Blacklist (exact entry) are in the zero-th
+                    // array returned by get.php
+                    listt.append(
+                    "<li id=\"" + index + "\" class=\"list-group-item clearfix\">" + entry +
+                    "<button class=\"btn btn-danger btn-xs pull-right\" type=\"button\">" +
+                    "<span class=\"glyphicon glyphicon-trash\"></span></button></li>");
+                    // Handle button
+                    $("#list-time #"+index+"").on("click", "button", function() {
+                        alert('Not yet implemented. Please delete the entries from /etc/pihole/time.blacklist.txt')
+                        //sub(index, entry, "exact");
+                    });
+                });
+            }
+            listt.fadeIn(100);
+        },
+        error: function(jqXHR, exception) {
+            $("#alFailure").show();
+        }
+    });
+    
+
 }
 
 window.onload = refresh(false);

@@ -26,6 +26,10 @@ switch ($listtype) {
         $list = array($exact, $regex);
         break;
 
+    case "time-black":
+        $list = getListContent("time.blacklist.txt");
+        break;
+
     default:
         die("Invalid list parameter");
         break;

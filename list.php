@@ -75,6 +75,11 @@ function getFullName() {
 <ul class="list-group" id="list-regex"></ul>
 <?php } ?>
 
+<?php if($list === "black") { ?>
+<h3 class="h3-time-blocking">Time blocking</h3>
+<ul class="list-group" id="list-time"></ul>
+<?php } ?>
+
 <script src="scripts/pi-hole/js/list.js"></script>
 
 <?php
