@@ -139,8 +139,8 @@ function refresh(fade) {
             }
             else{
                 $(".h3-time-blocking").show();
-                data[0] = data[0].sort();
-                data[0].forEach(function (entry, index) {
+                data = data.sort();
+                data.forEach(function (entry, index) {
                     // Whitelist entry or Blacklist (exact entry) are in the zero-th
                     // array returned by get.php
                     listt.append(
