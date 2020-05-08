@@ -252,6 +252,72 @@ function add(arg) {
     });
 }
 
+function addTime(arg) {
+    var locallistType = "time";
+    var domain = $("#domain");
+    if(domain.val().length === 0){
+        return;
+    }
+    if(/((^([0-1][0-9]|[2][0-3]):([0-5][0-9]))-(([0-1][0-9]|[2][0-3]):([0-5][0-9]))\|.*)/.test(domain.val().trim())){
+        alWarning.show();
+        warn.html("Please, follow this patter: HH:MM-HH:MM|domain (example -> 08:30-20:55|mydomain.com)");
+        alWarning.delay(8000).fadeOut(2000, function() {
+            alWarning.hide();
+        });
+        alInfo.delay(8000).fadeOut(2000, function() {
+            alInfo.hide();
+        });
+        return;
+    }
+
+    var alInfo = $("#alInfo");
+    var alSuccess = $("#alSuccess");
+    var alFailure = $("#alFailure");
+    var alWarning = $("#alWarning");
+    var err = $("#err");
+    var warn = $("#warn");
+    alInfo.show();
+    alSuccess.hide();
+    alFailure.hide();
+    alWarning.hide();
+    $.ajax({
+        url: "scripts/pi-hole/php/add.php",
+        method: "post",
+        data: {"domain":domain.val().trim(), "list":locallistType, "token":token},
+        success: function(response) {
+          if (response.trim() != domain.val().trim()) {
+            alWarning.show();
+            warn.html(response);
+            alWarning.delay(8000).fadeOut(2000, function() {
+                alWarning.hide();
+            });
+            alInfo.delay(8000).fadeOut(2000, function() {
+                alInfo.hide();
+            });
+          } else {
+            alSuccess.show();
+            alSuccess.delay(1000).fadeOut(2000, function() {
+                alSuccess.hide();
+            });
+            alInfo.delay(1000).fadeOut(2000, function() {
+                alInfo.hide();
+            });
+            domain.val("");
+            refresh(true);
+          }
+        },
+        error: function(jqXHR, exception) {
+            alFailure.show();
+            err.html("");
+            alFailure.delay(1000).fadeOut(2000, function() {
+                alFailure.hide();
+            });
+            alInfo.delay(1000).fadeOut(2000, function() {
+                alInfo.hide();
+            });
+        }
+    });
+}
 
 
 // Handle enter button for adding domains
@@ -273,6 +339,10 @@ $("#btnAddWildcard").on("click", function() {
 
 $("#btnAddRegex").on("click", function() {
     add("regex");
+});
+
+$("#btnAddTime").on("click", function() {
+    add("time");
 });
 
 $("#btnRefresh").on("click", function() {

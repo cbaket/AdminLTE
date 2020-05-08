@@ -53,6 +53,9 @@ switch($type) {
     case "audit":
         echo exec("sudo pihole -a audit ${_POST['domain']}");
         break;
+    case "time":
+        echo shell_exec("echo '${_POST['domain']}' | sudo tee -a /etc/pihole/time.blacklist.txt");
+        break;
 }
 
 ?>

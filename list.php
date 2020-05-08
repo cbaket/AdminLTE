@@ -39,6 +39,7 @@ function getFullName() {
         <button id="btnAdd" class="btn btn-default" type="button">Add (exact)</button>
         <button id="btnAddWildcard" class="btn btn-default" type="button">Add (wildcard)</button>
         <button id="btnAddRegex" class="btn btn-default" type="button">Add (regex)</button>
+        <button id="btnAddTime" class="btn btn-default" type="button">Add (time)</button>
     <?php }else{ ?>
         <button id="btnAdd" class="btn btn-default" type="button">Add</button>
     <?php } ?>
