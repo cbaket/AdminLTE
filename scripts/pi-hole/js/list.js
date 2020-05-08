@@ -144,11 +144,25 @@ function refresh(fade) {
                     // Whitelist entry or Blacklist (exact entry) are in the zero-th
                     // array returned by get.php
                     listt.append(
-                    "<li id=\"" + index + "\" class=\"list-group-item clearfix\">" + entry +
-                    "<button class=\"btn btn-danger btn-xs pull-right\" type=\"button\">" +
-                    "<span class=\"glyphicon glyphicon-trash\"></span></button></li>");
-                    // Handle button
-                    $("#list-time #"+index+"").on("click", "button", function() {
+                        `<li id="${index}" class="list-group-item clearfix"> 
+                            ${entry}
+                            <div class="btn-toolbar pull-right" role="group">
+                                <button class="dev_btn-add btn btn-success btn-xs" type="button">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                                <button class="dev_btn-remove btn btn-danger btn-xs" type="button">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </div>   
+                        </li>`
+                    );
+                    // Handle add button
+                    $("#list-time #"+index+"").on("click", "dev_btn-add", function() {
+                        alert('Not yet implemented. Please add the entries from /etc/pihole/time.blacklist.txt')
+                        //sub(index, entry, "exact");
+                    });
+                    // Handle remove button
+                    $("#list-time #"+index+"").on("click", "dev_btn-remove", function() {
                         alert('Not yet implemented. Please delete the entries from /etc/pihole/time.blacklist.txt')
                         //sub(index, entry, "exact");
                     });
