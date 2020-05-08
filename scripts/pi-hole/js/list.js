@@ -147,8 +147,8 @@ function refresh(fade) {
                         `<li id="${index}" class="list-group-item clearfix"> 
                             ${entry}
                             <div class="btn-toolbar pull-right" role="group">
-                                <button class="dev_btn-add btn btn-success btn-xs" type="button">
-                                    <span class="glyphicon glyphicon-plus"></span>
+                                <button class="dev_btn-edit btn btn-warning btn-xs" type="button">
+                                    <span class="glyphicon glyphicon-edit"></span>
                                 </button>
                                 <button class="dev_btn-remove btn btn-danger btn-xs" type="button">
                                     <span class="glyphicon glyphicon-trash"></span>
@@ -157,12 +157,12 @@ function refresh(fade) {
                         </li>`
                     );
                     // Handle add button
-                    $("#list-time #"+index+"").on("click", "dev_btn-add", function() {
-                        alert('Not yet implemented. Please add the entries from /etc/pihole/time.blacklist.txt')
+                    $("#list-time #"+index+"").on("click", ".dev_btn-edit", function() {
+                        alert('Not yet implemented. Please edit the entries from /etc/pihole/time.blacklist.txt')
                         //sub(index, entry, "exact");
                     });
                     // Handle remove button
-                    $("#list-time #"+index+"").on("click", "dev_btn-remove", function() {
+                    $("#list-time #"+index+"").on("click", ".dev_btn-remove", function() {
                         alert('Not yet implemented. Please delete the entries from /etc/pihole/time.blacklist.txt')
                         //sub(index, entry, "exact");
                     });
