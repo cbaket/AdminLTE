@@ -129,7 +129,7 @@ function refresh(fade) {
     $.ajax({
         url: "scripts/pi-hole/php/get.php",
         method: "get",
-        data: {"list":""},
+        data: {"list":"time-black"},
         success: function(response) {
             listt.html("");
             var data = JSON.parse(response);
