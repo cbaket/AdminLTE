@@ -258,7 +258,16 @@ function addTime(arg) {
     if(domain.val().length === 0){
         return;
     }
-    if(/((^([0-1][0-9]|[2][0-3]):([0-5][0-9]))-(([0-1][0-9]|[2][0-3]):([0-5][0-9]))\|.*)/.test(domain.val().trim())){
+
+    var alInfo = $("#alInfo");
+    var alSuccess = $("#alSuccess");
+    var alFailure = $("#alFailure");
+    var alWarning = $("#alWarning");
+    var err = $("#err");
+    var warn = $("#warn");
+
+    // validate input.
+    if(!/((^([0-1][0-9]|[2][0-3]):([0-5][0-9]))-(([0-1][0-9]|[2][0-3]):([0-5][0-9]))\|.*)/.test(domain.val().trim())){
         alWarning.show();
         warn.html("Please, follow this patter: HH:MM-HH:MM|domain (example -> 08:30-20:55|mydomain.com)");
         alWarning.delay(8000).fadeOut(2000, function() {
@@ -270,12 +279,6 @@ function addTime(arg) {
         return;
     }
 
-    var alInfo = $("#alInfo");
-    var alSuccess = $("#alSuccess");
-    var alFailure = $("#alFailure");
-    var alWarning = $("#alWarning");
-    var err = $("#err");
-    var warn = $("#warn");
     alInfo.show();
     alSuccess.hide();
     alFailure.hide();
@@ -342,7 +345,7 @@ $("#btnAddRegex").on("click", function() {
 });
 
 $("#btnAddTime").on("click", function() {
-    add("time");
+    addTime();
 });
 
 $("#btnRefresh").on("click", function() {

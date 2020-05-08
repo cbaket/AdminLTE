@@ -18,7 +18,7 @@ if (empty($api)) {
 
 // Don't check if the added item is a valid domain for regex expressions. Regex
 // filters are validated by FTL on import and skipped if invalid
-if($type !== "regex") {
+if($type !== "regex" && $type !== "time") {
     check_domain();
 }
 
