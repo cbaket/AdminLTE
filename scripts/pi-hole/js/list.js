@@ -268,10 +268,10 @@ function addTime(arg) {
 
     // validate input.
     if(!/((^([0-1][0-9]|[2][0-3]):([0-5][0-9]))-(([0-1][0-9]|[2][0-3]):([0-5][0-9]))\|.*)/.test(domain.val().trim())){
-        alWarning.show();
-        warn.html("Please, follow this patter: HH:MM-HH:MM|domain (example -> 08:30-20:55|mydomain.com)");
-        alWarning.delay(8000).fadeOut(2000, function() {
-            alWarning.hide();
+        alFailure.show();
+        err.html("Please, follow this patter: HH:MM-HH:MM|domain (example -> 08:30-20:55|mydomain.com)");
+        alFailure.delay(8000).fadeOut(2000, function() {
+            alFailure.hide();
         });
         alInfo.delay(8000).fadeOut(2000, function() {
             alInfo.hide();
