@@ -288,7 +288,7 @@ function addTime(arg) {
         method: "post",
         data: {"domain":domain.val().trim(), "list":locallistType, "token":token},
         success: function(response) {
-          if (response.trim().includes(domain.val().trim() + ' added')) {
+          if (!response.trim().includes(domain.val().trim() + ' added')) {
             alFailure.show();
             err.html(response);
             alFailure.delay(8000).fadeOut(2000, function() {
