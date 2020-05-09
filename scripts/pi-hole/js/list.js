@@ -288,11 +288,11 @@ function addTime(arg) {
         method: "post",
         data: {"domain":domain.val().trim(), "list":locallistType, "token":token},
         success: function(response) {
-          if (response.trim() != domain.val().trim()) {
-            alWarning.show();
-            warn.html(response);
-            alWarning.delay(8000).fadeOut(2000, function() {
-                alWarning.hide();
+          if (response.trim().includes(domain.val().trim() + ' added')) {
+            alFailure.show();
+            err.html(response);
+            alFailure.delay(8000).fadeOut(2000, function() {
+                alFailure.hide();
             });
             alInfo.delay(8000).fadeOut(2000, function() {
                 alInfo.hide();
